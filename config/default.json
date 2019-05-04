@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://dbadmin:mangosalad@fustercluck-hhc1s.mongodb.net/test?retryWrites=true",
+  "jwtSecret": "bananabunsbaby",
+  "githubClientId": "227dc3727702b71c655d",
+  "githubSecret": "405e5b948e9de64b8ff898cc645cf565957a5faa"
+}
