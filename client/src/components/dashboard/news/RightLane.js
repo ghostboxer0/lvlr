@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Spinner from '../../layouts/Spinner';
 import ListItem, { list } from './ListItem';
+import { getProfiles } from '../../../actions/profile';
 
-const RightLane = props => {
-  const items = list.map(item => (
-    <div>
-      <ListItem key={item.id} item={item} />
-    </div>
-  ));
+const RightLane = ({ getProfiles, profile: { profiles, loading } }) => {
+  useEffect(() => {
+    getProfiles();
+  }, [getProfiles]);
+
   const [formData, setFormData] = useState({
     criteria: ''
   });
@@ -40,12 +41,38 @@ const RightLane = props => {
           <i className='fas hover fa-building' />
         </div>
       </div>
-      <div className='content'>{items}</div>
+      <div className='content'>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Fragment>
+            <div className='profiles'>
+              {profiles.length > 0 ? (
+                profiles.map(profile => (
+                  <ListItem key={profile._id} profile={profile} />
+                ))
+              ) : (
+                <h4>No Profiles Found...</h4>
+              )}
+            </div>
+          </Fragment>
+        )}
+      </div>
       {/* <div className='footer'>footer</div> */}
     </div>
   );
 };
 
-RightLane.propTypes = {};
+RightLane.propTypes = {
+  getProfiles: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+};
 
-export default connect()(RightLane);
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
+export default connect(
+  mapStateToProps,
+  { getProfiles }
+)(RightLane);

@@ -1,0 +1,3 @@
+export const GET_SELECTED_ID = 'GET_SELECTED_ID';
+export const SET_SELECTED_ID = 'SET_SELECTED_ID';
+export const SOCIAL_ERROR = 'SOCIAL_ERROR';

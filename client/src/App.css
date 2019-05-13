@@ -771,7 +771,7 @@ table a :hover {
   /* flex: 1; */
   width: 3rem;
   text-align: center;
-  padding: 7px;
+  padding: 6px;
   background-color: var(--input-bg-color);
   border-radius: 8px 0 0 8px;
   border-right: 1px solid var(--accent-color);

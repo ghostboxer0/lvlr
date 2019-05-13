@@ -17,12 +17,12 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
-  return loading && profile === null ? (
+  }, [getCurrentProfile]);
+  return loading || profile === null ? (
     <Spinner />
   ) : (
     <Fragment>
-      <DashboardTabs itemlist />
+      <DashboardTabs profile={profile} />
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>
         <i className='fas fa-user' />

@@ -7,7 +7,7 @@ import { deleteEducation } from '../../actions/profile';
 
 const Education = ({ education, deleteEducation }) => {
   const educations = education.map(edu => (
-    <tr key={edu.id}>
+    <tr key={edu._id}>
       <td>{edu.school}</td>
       <td className='hide-sm'>{edu.degree}</td>
       <td>
@@ -19,15 +19,15 @@ const Education = ({ education, deleteEducation }) => {
         )}
       </td>
       <td>
-        <Link>
+        <Link to='!#'>
           <i className='fas fa-info-circle' />
         </Link>{' '}
         |{' '}
-        <Link>
+        <Link to='!#'>
           <i className='fas fa-edit' />
         </Link>{' '}
         |{' '}
-        <Link onClick={() => deleteEducation(edu._id)}>
+        <Link to='!#' onClick={() => deleteEducation(edu._id)}>
           <i className='fas fa-trash-alt' />
         </Link>
       </td>
