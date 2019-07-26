@@ -7,6 +7,7 @@ import settings from './tabs/settings';
 import alert from './alert';
 import auth from './auth';
 import profile from './profile';
+import post from './post';
 
 export default combineReducers({
   news,
@@ -16,5 +17,6 @@ export default combineReducers({
   settings,
   alert,
   auth,
-  profile
+  profile,
+  post
 });

@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 import LeftLane from './LeftLane';
 import RightLane from './RightLane';
 
-const Social = ({ profile }) => {
+const News = ({ profile }) => {
   return (
-    <div className='dashtab'>
-      <LeftLane selectedId={profile.id} profile={profile} />
-      <RightLane profile={profile} />
-    </div>
+    <Fragment>
+      <div className='dashtab'>
+        <LeftLane selectedId={'5ccd79399fb3ff29d86cf839'} profile={profile} />
+        <RightLane profile={profile} />
+      </div>
+    </Fragment>
   );
 };
 
-Social.propTypes = {
+News.propTypes = {
   profile: PropTypes.object.isRequired
   // selectedId: PropTypes.string.isRequired
 };
@@ -22,4 +24,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps)(Social);
+export default connect(mapStateToProps)(News);

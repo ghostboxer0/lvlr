@@ -114,7 +114,20 @@ const ProfileSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  friends: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+      },
+      handle: {
+        type: String,
+        required: true,
+        max: 40
+      }
+    }
+  ]
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

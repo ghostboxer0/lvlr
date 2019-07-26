@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Spinner from '../../layouts/Spinner';
+import Spinner from '../layouts/Spinner';
 import ListItem, { list } from './ListItem';
-import { getProfiles } from '../../../actions/profile';
+import { getProfiles } from '../../actions/profile';
 
 const RightLane = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {

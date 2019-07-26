@@ -366,4 +366,86 @@ router.get('/github/:username', async (req, res) => {
   }
 });
 
+// @route   GET api/profile/friends/
+// @desc    Get user's friends
+// @access  Private
+router.get('/friends', auth, async (req, res) => {
+  try {
+    const userIds = [];
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    profile.friends.forEach(friend => {
+      userIds.push(friend.user._id);
+    });
+
+    const friends = await Profile.find({
+      user: { $in: userIds }
+    });
+
+    res.json(friends);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error ' + err.message);
+  }
+});
+
+// @route   PUT api/profile/friend/:friend_id
+// @desc    add friend
+// @access  Private
+router.put('/friend/:friend_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    const friend = await Profile.findOne({ user: req.params.friend_id });
+
+    // Check if current user already has this friend
+    if (
+      profile.friends.filter(
+        friend => friend.user.toString() === req.params.friend_id
+      ).length > 0
+    ) {
+      return res.status(400).json({ msg: 'already a friend' });
+    }
+
+    profile.friends.unshift({ user: friend.user, handle: friend.handle });
+    friend.friends.unshift({ user: profile.user, handle: profile.handle });
+    await friend.save();
+    await profile.save();
+    res.json(profile.friends);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error!');
+  }
+});
+
+// @route   DELETE api/profile/friend/:friend_id
+// @desc    Delete a friend
+// @access  Private
+router.delete('/friend/:friend_id', auth, async (req, res) => {
+  try {
+    // Get profile
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    // Get friend from profile.friends
+    const friend = profile.friends.filter(
+      friend => friend.user.toString() === req.params.friend_id
+    );
+    if (!friend || friend.length <= 0) {
+      return res.status(404).json({ msg: 'friend not found' });
+    }
+
+    // Get index of like to be removed
+    const removeIndex = profile.friends
+      .map(friend => friend.user.toString())
+      .indexOf(req.params.friend_id);
+
+    profile.friends.splice(removeIndex, 1);
+    await profile.save();
+
+    res.json(profile.friends);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error ' + err.message);
+  }
+});
+
 module.exports = router;

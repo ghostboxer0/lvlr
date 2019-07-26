@@ -2,18 +2,25 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat|Dosis|Indie+Flower|Quicksand|Nanum+Pen+Script');
 
 :root {
+  /* base colorsprops */
   --primary-color: #8300cf;
   --dark-color: #000000;
   --light-color: #f4f4f4;
   --grey-color: #868686;
+  --dark-grey-color: #3d3d3d;
   --danger-color: #df2033;
   --success-color: #17a738;
   --font-color: #868686;
   --accent-color: #8300cf;
   --bg-color: #191919;
+  --shadow-color: #080808;
+
+  /* btn props */
   --btn-bg-color: #000000;
   --btn-brdr-color: #8300cf;
   --btn-fnt-color: #8300cf;
+
+  /* input props */
   --input-bg-color: #303030;
   --input-brdr-color: #303030;
   --input-fnt-color: #9300e9;
@@ -115,6 +122,22 @@ img {
   color: var(--dark-color);
 }
 
+.text-accent {
+  color: var(--accent-color);
+}
+
+.shadowed {
+  text-shadow: 2px 2px 4px var(--bg-color);
+}
+
+.text-bg {
+  color: var(--bg-color);
+}
+
+.strong {
+  font-weight: bolder;
+}
+
 /* Padding */
 .p {
   padding: 0.5rem;
@@ -173,15 +196,26 @@ img {
   color: var(--btn-fnt-color);
   padding: 0.1rem 0.9rem;
   font-size: 1rem;
-  border: 1px solid var(--btn-brdr-color);
+  /* border: 1px solid var(--btn-brdr-color); */
   border-radius: 8px;
   cursor: pointer;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-right: 0.1rem;
+  margin-bottom: 0.1rem;
   transition: opacity 0.2s ease-in;
   outline: none;
   box-shadow: 0 8px 6px -6px black;
   opacity: 0.6;
+}
+
+.btn.icon-circle {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0.1rem;
+  border-radius: 100%;
+  max-height: 1.75rem;
+  max-width: 1.75rem;
+  min-height: 1.75rem;
+  min-width: 1.75rem;
 }
 
 .badge {
@@ -442,17 +476,6 @@ table a :hover {
   text-align: center;
 }
 
-/* Profiles Page */
-.profile {
-  display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
-  align-items: center;
-  grid-gap: 2rem;
-  padding: 1rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-}
-
 /* Profile Page */
 .profile-grid {
   display: grid;
@@ -620,6 +643,7 @@ table a :hover {
   padding: 1.5rem 0rem;
   width: 100%;
   min-height: 550px;
+  max-height: 550px;
   background-color: var(--input-bg-color);
   border: solid var(--bg-color);
   border-width: 1px;
@@ -694,6 +718,10 @@ table a :hover {
   float: right;
   margin: 0 0 0 0.5rem;
 }
+.leftlane .footer .btn img {
+  height: 1rem;
+  max-width: 1rem;
+}
 
 .rightlane {
   flex: 1;
@@ -705,7 +733,6 @@ table a :hover {
 .rightlane .header {
   display: flex;
   height: 2.75rem;
-  line-height: 0rem;
 }
 .rightlane .header .search {
   display: flex;
@@ -737,6 +764,23 @@ table a :hover {
   background-color: #00000000;
   border: none;
   height: 100%;
+}
+
+.rightlane .header .section-label {
+  flex: 1;
+  text-align: center;
+}
+
+.rightlane .header .icon-group {
+  flex: 1;
+  line-height: 0rem;
+}
+
+.rightlane .header .icon-group i.active {
+  text-shadow: 2px 2px 3px var(--dark-color);
+  font-size: 1.75rem;
+  line-height: 0.8;
+  color: var(--input-fnt-color);
 }
 
 .rightlane .header .icon-group i:hover {
@@ -772,7 +816,7 @@ table a :hover {
   width: 3rem;
   text-align: center;
   padding: 6px;
-  background-color: var(--input-bg-color);
+  background-color: var(--dark-grey-color);
   border-radius: 8px 0 0 8px;
   border-right: 1px solid var(--accent-color);
 }
@@ -782,16 +826,18 @@ table a :hover {
 }
 
 .rightlane .content .listitem .leftside .iconholder {
-  height: 2.25rem;
-  width: 2.25rem;
-  /* display: table-cell; */
-  vertical-align: middle;
+  min-height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  max-height: 2.25rem !important;
+  max-width: 2.25rem !important;
+  display: block;
   text-align: center;
-  padding: 5px;
+  align-content: center;
+  padding: 0px;
   background-color: var(--dark-color);
-  border-radius: 100%;
-  border: 1px solid var(--accent-color);
-  box-shadow: 0 0 18px -3px var(--accent-color);
+  /* border: 2px solid var(--grey-color); */
+  border-radius: 50%;
+  box-shadow: 0 0 18px -3px var(--dark-color);
 }
 
 .rightlane .content .listitem:hover .leftside .iconholder {
@@ -800,7 +846,14 @@ table a :hover {
 }
 
 .rightlane .content .listitem .leftside .iconholder i {
+  margin: 6px;
   font-size: 1.25rem;
+}
+
+.rightlane .content .listitem .leftside .iconholder .avicon {
+  margin: 0;
+  border: 1px solid var(--dark-color);
+  border-radius: 50%;
 }
 
 .rightlane .content .listitem .middle {
@@ -813,7 +866,7 @@ table a :hover {
 .rightlane .content .listitem .middle .textholder {
   flex: 1;
   line-height: 1.75rem;
-  color: var(--accent-color);
+  color: var(--font-color);
   display: flex;
   flex-direction: column;
 }
@@ -823,7 +876,7 @@ table a :hover {
   flex-direction: row;
 }
 .rightlane .content .listitem .middle .textholder .top .title {
-  flex: 1;
+  flex: 0.75;
   font-size: 1.5rem;
   flex-wrap: nowrap;
   overflow: hidden;
@@ -850,13 +903,13 @@ table a :hover {
 }
 
 .rightlane .content .listitem .middle .textholder .bottom .subtext {
-  flex: 1;
+  flex: 0.75;
   color: var(--grey-color);
   overflow: hidden;
   font-size: 0.75rem;
 }
 .rightlane .content .listitem .middle .textholder .bottom .meta {
-  flex: 0.1;
+  flex: 0.25;
   min-width: 3rem;
   font-size: 0.75rem;
   flex-wrap: nowrap;
@@ -877,12 +930,155 @@ table a :hover {
   padding: 6px 0 0 0;
 }
 
+/* Profiles Page */
+.profile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile .header {
+  display: flex;
+  min-height: 6rem;
+}
+.profile .header .iconholder {
+  font-size: 3rem;
+  text-shadow: 2px 2px 8px var(--dark-color);
+  box-shadow: inset 0 0 8px -3px var(--dark-color);
+  box-shadow: 0 0 10px -1px var(--accent-color);
+  height: 5rem;
+  width: 5rem;
+  border: solid 1px var(--accent-color);
+  border-radius: 100%;
+  background-color: var(--bg-color);
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.profile .header .textholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.75rem;
+}
+.profile .header .textholder .title {
+  flex: 1;
+  text-shadow: 2px 2px 8px var(--dark-color);
+  color: var(--accent-color);
+  text-align: right;
+  font-size: 2rem;
+}
+.profile .header .textholder .subtext {
+  flex: 0.75;
+  text-shadow: 2px 2px 8px var(--dark-color);
+  text-align: right;
+  font-size: 1rem;
+}
+.profile .header .textholder .date {
+  flex: 0.25;
+  text-shadow: 2px 2px 8px var(--dark-color);
+  text-align: right;
+  color: var(--accent-color);
+  font-size: 0.75rem;
+}
+
+.profile .content {
+  flex: 1;
+  padding: 0.5rem;
+  border: solid var(--grey-color);
+  border-width: 1px 0px;
+  overflow: auto;
+}
+.profile .footer {
+  height: 34px;
+  padding: 6px 0 0 0;
+}
+
+.profile .footer .btn {
+  height: 28px;
+  float: right;
+  margin: 0 0 0 0.25rem;
+}
+.profile .footer .btn img {
+  height: 1rem;
+  max-width: 1rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  padding: 2rem 2rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  box-shadow: inset 0 0 5px var(--dark-color);
+  border-radius: 12px;
+  padding: 2px 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--dark-grey-color);
+  border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--grey-color);
+}
+
+.indent {
+  margin-top: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.experience,
+.education {
+  margin-bottom: 1rem;
+}
+
+.segment-dropped {
+  line-height: 1.2;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: var(--dark-grey-color);
+  margin-bottom: 8px;
+  box-shadow: inset 0.25rem 0.25rem 8px var(--bg-color);
+}
+
+hr {
+  border: 1px solid var(--grey-color);
+  /* border-top-color: var(--dark-color); */
+  border-top-width: 0;
+  margin-bottom: 1rem;
+}
+
 .icon-group {
   text-align: right;
   font-size: 1.5rem;
   flex: 1;
   height: 32px;
   padding: 4px;
+}
+
+ul.icon-group {
+  text-align: left;
+  height: 3rem;
+}
+ul.icon-group li {
+  padding: 0 4px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.lefty {
+  float: left !important;
+}
+
+.righty {
+  float: right !important;
 }
 
 /* Mobile Styles */
@@ -936,35 +1132,6 @@ table a :hover {
   }
 
   /* Profiles Page */
-  .profile {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .profile ul {
-    display: none;
-  }
-
-  /* Profile Page */
-
-  .profile-top img,
-  .profile img {
-    width: 200px;
-    margin: auto;
-  }
-
-  .profile-grid {
-    grid-template-areas:
-      'top'
-      'about'
-      'exp'
-      'edu'
-      'github';
-  }
-
-  .profile-about .skills {
-    flex-direction: column;
-  }
 
   .dash-buttons a {
     display: block;
@@ -973,7 +1140,7 @@ table a :hover {
   }
 
   .post {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
   }
   .post a,
   .post button {

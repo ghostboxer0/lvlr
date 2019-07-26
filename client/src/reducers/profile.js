@@ -12,6 +12,7 @@ const initialState = {
   profiles: [],
   repos: [],
   loading: true,
+  selectedItem: {},
   error: {}
 };
 

@@ -2,44 +2,29 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
-import { connect } from 'react-redux';
 
-const ListItem = ({
-  selectedId,
-  profile: {
-    user: { _id, name, avatar },
-    status,
-    company,
-    location,
-    skills
-  }
-}) => {
-  const onClick = e => {
-    selectedId = _id;
-    console.log(selectedId);
-  };
-
+const ListItem = ({ item: { icon, title, subtext, date, likecnt } }) => {
   return (
     <Fragment>
-      <div className='listitem' onClick={e => onClick(e)}>
+      <div className='listitem'>
         <div className='leftside'>
           <div className='iconholder'>
-            <i className='fas fa-portrait' />
+            <i className={icon} />
           </div>
         </div>
         <div className='middle'>
           <div className='textholder'>
             <div className='top'>
-              <div className='title'>{name}</div>
+              <div className='title'>{title}</div>
               <div className='date'>
-                <Moment parse='mm/dd/yyyy HH:mm'>{company}</Moment>
+                <Moment parse='mm/dd/yyyy HH:mm'>{date}</Moment>
               </div>
             </div>
             <div className='bottom'>
-              <div className='subtext'>{status}</div>
+              <div className='subtext'>{subtext}</div>
 
               <div className='meta'>
-                <i className='fas fa-star'> {location}</i>
+                <i className='fas fa-star'> {likecnt}</i>
               </div>
             </div>
           </div>
@@ -50,15 +35,9 @@ const ListItem = ({
   );
 };
 
-ListItem.propTypes = {
-  profile: PropTypes.object.isRequired
-};
+ListItem.propTypes = {};
 
-const mapStateToProps = state => ({
-  selectedId: state.selectedId
-});
-
-export default connect(mapStateToProps)(ListItem);
+export default ListItem;
 
 export const list = [
   {

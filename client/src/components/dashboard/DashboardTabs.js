@@ -2,21 +2,39 @@ import React, { Fragment } from 'react';
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Tabs from './Tabs';
-import Social from './social/Social';
+import Tab from './Tab';
+import { connect } from 'react-redux';
+import { socialtab, newstab, playtab, statstab, settingstab } from './tabdata';
 
-const DashboardTabs = props => {
+const DashboardTabs = ({ props, profile }) => {
+  const tabdatas = [newstab, socialtab, playtab, statstab, settingstab].map(
+    tab => {
+      return (
+        <Tab
+          key={tab.label}
+          label={tab.label}
+          icon={tab.icon}
+          activeTab={tab.activeTab}
+          onClick={tab.onClick}
+        >
+          <Fragment>{tab.content}</Fragment>
+        </Tab>
+      );
+    }
+  );
   return (
     <Fragment>
-      <Tabs>
-        <Social />
-      </Tabs>
+      <Tabs>{tabdatas}</Tabs>
     </Fragment>
   );
 };
 
 DashboardTabs.propTypes = {
-  // tabdata: PropTypes.object.isRequired,
-  // profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired
 };
 
-export default DashboardTabs;
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
+export default connect(mapStateToProps)(DashboardTabs);

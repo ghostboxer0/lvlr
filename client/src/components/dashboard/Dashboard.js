@@ -23,12 +23,12 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <DashboardTabs profile={profile} />
-      <h1 className='large text-primary'>Dashboard</h1>
+      {/* <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>
         <i className='fas fa-user' />
         Welcome {user && user.name}
-      </p>
-      {profile !== null ? (
+      </p> */}
+      {/* {profile !== null ? (
         <Fragment>
           <DashboardActions />
           <Experience experience={profile.experience} />
@@ -47,7 +47,7 @@ const Dashboard = ({
             Create Profile
           </Link>
         </Fragment>
-      )}
+      )} */}
     </Fragment>
   );
 };
